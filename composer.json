@@ -1,0 +1,24 @@
+{
+    "name": "ledc/pospal",
+    "description": "Pospal银豹收银系统开放平台非官方SDK",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ledc\\Pospal\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "david",
+            "email": "367013672@qq.com",
+            "homepage": "https://www.iyuu.cn",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-json": "*",
+        "ext-curl": "*"
+    }
+}
