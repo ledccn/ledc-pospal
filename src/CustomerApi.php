@@ -27,7 +27,7 @@ class CustomerApi extends HttpClient
      */
     public function queryByUid(int $uid): HttpResponse
     {
-        return $this->postRequest('/pospal-api2/openapi/v1/customerOpenApi/queryByNumber', [
+        return $this->postRequest('/pospal-api2/openapi/v1/customerOpenApi/queryByUid', [
             'appId' => $this->getCertificate()->getAppId(),
             'customerUid' => $uid
         ]);
@@ -111,7 +111,15 @@ class CustomerApi extends HttpClient
      */
     public function add(array $data): HttpResponse
     {
-        $data['appId'] = $this->getCertificate()->getAppId();
+        if (isset($data['customerInfo'])) {
+            $data['appId'] = $this->getCertificate()->getAppId();
+        } else {
+            $data = [
+                'appId' => $this->getCertificate()->getAppId(),
+                'customerInfo' => $data,
+            ];
+        }
+
         return $this->postRequest('/pospal-api2/openapi/v1/customerOpenApi/add', $data);
     }
 }
