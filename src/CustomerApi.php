@@ -63,7 +63,7 @@ class CustomerApi extends HttpClient
             'dataChangeTime' => $dataChangeTime
         ];
         $_balance = bccomp((string)$balanceIncrement, '0', 2);
-        $_point = bcdiv((string)$pointIncrement, '0', 2);
+        $_point = bccomp((string)$pointIncrement, '0', 2);
 
         // 余额
         if (0 !== $_balance) {

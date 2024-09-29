@@ -2,10 +2,12 @@
 
 namespace Ledc\Pospal;
 
+use JsonSerializable;
+
 /**
  * HTTP响应
  */
-class HttpResponse
+class HttpResponse implements JsonSerializable
 {
     /**
      * 响应
@@ -97,5 +99,33 @@ class HttpResponse
     public function isFailed(): bool
     {
         return !$this->isSuccessful();
+    }
+
+    /**
+     * 转数组
+     * @return array
+     */
+    public function jsonSerialize(): array
+    {
+        return get_object_vars($this);
+    }
+
+    /**
+     * 转JSON
+     * @param int $options
+     * @return string
+     */
+    public function toJson(int $options = 0): string
+    {
+        return json_encode($this->jsonSerialize(), $options);
+    }
+
+    /**
+     * 转为字符串
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->toJson(JSON_UNESCAPED_UNICODE);
     }
 }
